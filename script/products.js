@@ -1,3 +1,22 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// array
+
 let products = [
     {
     id: 1,
@@ -39,6 +58,7 @@ let products = [
                     
 ];
 localStorage.setItem("products",JSON.stringify(products));
+
 function displayProducts(productsArray) {
     let cardContainer = document.querySelector(".row-cols-1")
     cardContainer.innerHTML = "";
@@ -47,7 +67,16 @@ function displayProducts(productsArray) {
         console.log(product)
         let card = document.createElement("div");
         card.innerHTML = `
-        
+          <div class="card " id="1">
+        <img src="${products.image}" class="card-img-top" alt="OatsBread" loading="lazy">
+        <div class="card-body">
+          <h5 class="card-title">${products.name}</h5>
+          <p class="card-text">${products.amount}</p>
+        </div>
+        <div class="d-grid d-md-block ">
+            <button class="btn btn-primary" type="button">Button</button>
+          </div>
+    </div>
         
         
         `
