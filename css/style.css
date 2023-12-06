@@ -15,7 +15,7 @@
 
     #navBar {
         position: fixed;
-       
+        z-index: 999; 
         width: 100%;
         background-color: white;
         z-index: 1000; 
@@ -32,14 +32,21 @@ body {
     font-family: Arial, sans-serif;
     margin: 20px;
 }
+/*  search bar and sort button */
+#searchBar, #sortButton {
+    position: fixed;
+    top: 50%; 
+    right: 0;
+    z-index: 1000; 
+}
 
 #search-sort-container {
     text-align: center;
     margin-bottom: 20px;
 }
 
-#productContainer {
-    display: flex;
+#productList {
+   
     display: grid;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -67,7 +74,7 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #f8f9fa;
+    background-color:goldenrod;
     padding: 10px 0;
 }
 /* about text add */
@@ -82,3 +89,4 @@ footer {
     font-weight: bold; 
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); 
 }
+
