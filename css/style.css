@@ -11,10 +11,23 @@
     width: 60px;
     height: 40px;
 }
-/* navBar */
-.navbar{
-   
-}
+ /* navBar */
+
+    #navBar {
+        position: fixed;
+       
+        width: 100%;
+        background-color: white;
+        z-index: 1000; 
+    }
+    
+    #Logo {
+        width: 150px; 
+        height: auto; 
+        filter: brightness(150%); 
+    }
+    
+
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
@@ -42,4 +55,30 @@ body {
 
 .card {
     width: 100%;
+}
+/* carousel */
+.carousel-caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f8f9fa;
+    padding: 10px 0;
+}
+/* about text add */
+.image-text {
+    position: absolute;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); 
 }
