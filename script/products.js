@@ -5,11 +5,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const sortSelect = document.getElementById('sortSelect');
     const productList = document.getElementById('productList');
 
-    // Sample product data  
+    //  product data sample  
     let products =JSON.parse(localStorage.getItem('products'))?
     JSON.parse(localStorage.getItem('products')) :
     localStorage.setItem('products', JSON.stringify) [
-        // Your product data here
+        // product data
         {
             id: 1,
             name: 'Super-seeded-oat-bread',
