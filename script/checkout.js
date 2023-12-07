@@ -3,7 +3,7 @@ let currentDate = new Date().getUTCFullYear();
 document.querySelector('#currentDate').textContent = currentDate;
 
 let dataWrapper = document.querySelector('[data-checkout]')
-let checkoutData = JSON.parse(localStorage.getItem('checkout'))
+let checkoutData = JSON.parse(localStorage.getItem('checkout')) || []
 
 // Group By
 function displayData() {
@@ -21,4 +21,18 @@ function displayData() {
     }
     
 }
-displayData()
+displayData();
+// Clear
+// function clearCart (){
+//     localStorage.removeItem("checkout")
+//     checkOut = [];
+//     displayCheckoutItems();
+//     Message();
+// }
+// function buyNow(){
+//     clearCart();
+
+// }
+// function Message(){
+//     document.getElementById("Message").style.display
+// }
