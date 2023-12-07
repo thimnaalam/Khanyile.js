@@ -22,17 +22,12 @@ function displayData() {
     
 }
 displayData();
-// Clear
-// function clearCart (){
-//     localStorage.removeItem("checkout")
-//     checkOut = [];
-//     displayCheckoutItems();
-//     Message();
-// }
-// function buyNow(){
-//     clearCart();
 
-// }
-// function Message(){
-//     document.getElementById("Message").style.display
-// }
+document.querySelector('[checkout-clear-all]').addEventListener('click', ()=>{
+    localStorage.removeItem('checkout')
+    location.reload()
+})
+
+document.querySelector('[checkout-buy-now]').addEventListener('click', ()=>{
+    document.querySelector('#Message').style.display = 'block'
+})
