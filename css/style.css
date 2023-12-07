@@ -14,7 +14,7 @@
  /* navBar */
 
     #navBar {
-        position: fixed;
+        position: relative;
         z-index: 999; 
         width: 100%;
         background-color: white;
@@ -34,10 +34,10 @@ body {
 }
 /*  search bar and sort button */
 #searchBar, #sortButton {
-    position: fixed;
+    position: relative  ;
     top: 50%; 
     right: 0;
-    z-index: 1000; 
+    z-index: 500; 
 }
 
 #search-sort-container {
@@ -88,5 +88,8 @@ footer {
     font-size: 24px;
     font-weight: bold; 
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); 
+}
+ul {
+    list-style-type: none;
 }
 
