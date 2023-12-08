@@ -52,38 +52,62 @@
 </nav>
 
 <main>
-    <h2>Product Management</h2>
+    <div class="container mt-5">
+        <h2>Admin Page</h2>
+        <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#addProductModal">Add Product</button>
+        
+        <!-- Product Table -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Image</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="adminProductList"></tbody>
+        </table>
 
-    <!-- Table for displaying products -->
-    <table id="productTable">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Amount</th>
-                <th>Image</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
+        
+           
+            <!-- Product Modal -->
+<div class="modal" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="addProductModalLabel">Add Product</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      <div class="modal-body">
+          <!-- form elements for adding a product  -->
+          <form id="addProductForm">
+              
+              <div class="form-group">
+                  <label for="productName">Product Name</label>
+                  <input type="text" class="form-control" id="productName" required>
+              </div>
+              <div class="form-group">
+                  <label for="productAmount">Product Amount</label>
+                  <input type="number" class="form-control" id="productAmount" required>
+              </div>
+              <div class="form-group">
+                  <label for="productImage">Product Image URL</label>
+                  <input type="text" class="form-control" id="productImage" required>
+              </div>
+             
+              <button type="submit" class="btn btn-primary">Add Product</button>
+          </form>
+      </div>
+  </div>
+</div>
+</div>
 
-    <!--  Product Form -->
-    <h2>Add New Product</h2>
-    <form id="addProductForm">
-        <!--  form fields for adding a new product -->
-        <label for="newProductName">Product Name:</label>
-        <input type="text" id="newProductName" required>
-
-        <label for="newProductAmount">Product Amount:</label>
-        <input type="number" id="newProductAmount" required>
-
-        <label for="newProductImage">Product Image URL:</label>
-        <input type="text" id="newProductImage" required>
-
-        <button type="submit">Add Product</button>
-    </form>
-
+        </div>
+    </div>
 
 
 

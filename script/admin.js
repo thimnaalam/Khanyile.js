@@ -1,79 +1,95 @@
-// footer
-let currentDate = new Date().getUTCFullYear();
-document.querySelector('currentDate').textContent = currentDate;
-//table
-// document.addEventListener('DOMContentLoaded', function () {
-//     const productTableBody = document.querySelector('#productTable tbody');
-//     const addProductForm = document.getElementById('addProductForm');
 
-//     let products = JSON.parse(localStorage.getItem('products')) || [];
+// admin
+document.addEventListener('DOMContentLoaded', function () {
+    const adminProductList = document.getElementById('adminProductList');
+    
+    // Initial rendering of products in the admin table
+    renderAdminProducts(products);
 
-//     // Initial rendering of products
-//     renderProducts();
+    // Function to render products in the admin table
+    function renderAdminProducts(products) {
+        adminProductList.innerHTML = '';
+        products.forEach(product => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${product.id}</td>
+                <td>${product.name}</td>
+                <td>${product.amount}</td>
+                <td><img src="${product.image}" alt="${product.name}" style="max-width: 50px;"></td>
+                <td>
+                    <button class="btn btn-warning btn-sm" onclick="editProduct(${product.id})">Edit</button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteProduct(${product.id})">Delete</button>
+                </td>
+            `;
+            adminProductList.appendChild(tr);
+        });
+    }
 
-//     // Event listeners
-//     addProductForm.addEventListener('submit', addNewProduct);
+    // Function to open the Add Product Modal
+    function openAddProductModal() {
+      
+        $('#addProductModal').modal('show');
+    }
+    document.getElementById('addProductButton').addEventListener('click', openAddProductModal);
 
-//     // Functions
-//     function renderProducts() {
-//         productTableBody.innerHTML = '';
-//         products.forEach(product => {
-//             const row = document.createElement('tr');
-//             row.innerHTML = `
-//                 <td>${product.id}</td>
-//                 <td>${product.name}</td>
-//                 <td>${product.amount}</td>
-//                 <td><img src="${product.image}" alt="${product.name}" style="max-height: 50px;"></td>
-//                 <td>
-//                     <button onclick="editProduct(${product.id})">Edit</button>
-//                     <button onclick="deleteProduct(${product.id})">Delete</button>
-//                 </td>
-//             `;
-//             productTableBody.appendChild(row);
-//         });
-//     }
+    // Function to edit a product
+    function editProduct(productId) {
+       
+    const productIndex = products.findIndex(product => product.id === productId);
 
-//     function addNewProduct(event) {
-//         event.preventDefault();
+    if (productIndex !== -1) {
+        const productToEdit = products[productIndex];
 
-//         const newName = document.getElementById('newProductName').value;
-//         const newAmount = parseFloat(document.getElementById('newProductAmount').value);
-//         const newImage = document.getElementById('newProductImage').value;
+        // Display a modal or form with the current values
+        // For simplicity, I'm using a prompt, but you might use a Bootstrap modal
+        const updatedName = prompt("Enter the updated product name", productToEdit.name);
+        const updatedAmount = prompt("Enter the updated product amount", productToEdit.amount);
+        const updatedImage = prompt("Enter the updated product image URL", productToEdit.image);
 
-//         if (newName && !isNaN(newAmount) && newAmount >= 0 && newImage) {
-//             const newProduct = {
-//                 id: products.length + 1,
-//                 name: newName,
-//                 amount: newAmount,
-//                 image: newImage,
-//             };
+        // Update the product in the array
+        products[productIndex] = {
+            ...productToEdit,
+            name: updatedName,
+            amount: parseFloat(updatedAmount),
+            image: updatedImage,
+        };
 
-//             products.push(newProduct);
-//             saveProductsToLocalStorage();
-//             renderProducts();
+        // Save the updated products array to localStorage
+        localStorage.setItem('products', JSON.stringify(products));
 
-//             // Clear the form fields
-//             addProductForm.reset();
-//         } else {
-//             alert('Please fill in all the fields with valid data.');
-//         }
-//     }
+        // Re-render the product list
+        renderAdminProducts(products);
+    } else {
+        console.error('Product not found');
+    }
+    }
+    editProduct();
 
-//     function editProduct(productId) {
-//         // Implement edit functionality as needed
-//         console.log('Edit product with ID:', productId);
-//     }
+    // Function to delete a product
+    function deleteProduct(productId) {
+       /// Code to handle product deletion
+        /// You may want to ask for confirmation before deleting
+        // Ask for confirmation
+    const confirmDelete = confirm("Are you sure you want to delete this product?");
 
-//     function deleteProduct(productId) {
-//         const confirmDelete = confirm('Are you sure you want to delete this product?');
-//         if (confirmDelete) {
-//             products = products.filter(product => product.id !== productId);
-//             saveProductsToLocalStorage();
-//             renderProducts();
-//         }
-//     }
+    if (confirmDelete) {
+        // Find the product in the array based on productId
+        const productIndex = products.findIndex(product => product.id === productId);
 
-//     function saveProductsToLocalStorage() {
-//         localStorage.setItem('products', JSON.stringify(products));
-//     }
-// });
+        if (productIndex !== -1) {
+            // Remove the product from the array
+            products.splice(productIndex, 1);
+
+            // Save the updated products array to localStorage
+            localStorage.setItem('products', JSON.stringify(products));
+
+            // Re-render the product list
+            renderAdminProducts(products);
+        } else {
+            console.error('Product not found');
+        }
+    }
+    }
+    deleteProduct();
+});
+
