@@ -6,6 +6,13 @@
     padding: 0;
     box-sizing: border-box;
 }
+/* Landing page */
+@media only screen and (min-width: 300px) {
+    .carousel-caption{
+      
+    }
+  }
+  
 /* LOGO */
 #Logo{
     width: 60px;
