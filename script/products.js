@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
                   <p class="card-text">R${product.amount} </p>
                 </div>
                 <div class="d-grid d-md-block ">
-                    <button class="btn btn-primary" type="button" onclick='addToCart(${JSON.stringify(product)})'>Add to cart</button>
+                    <button class="btn btn-primary" id="Bcart" type="button" onclick='addToCart(${JSON.stringify(product)})'>Add to cart</button>
                   </div>
             </div>
                 `;

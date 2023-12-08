@@ -6,20 +6,7 @@
     padding: 0;
     box-sizing: border-box;
 }
-/* Landing page */
-@media only screen and (min-width: 300px) {
-    #carouselExampleFade{
-      
-      
-    }
-  } 
-  @media only screen and (max-width:720px){
-    #carouselExampleFade{
-       
-      
-    }
-    
-  }    
+ 
   
 /* LOGO */
 #Logo{
@@ -157,3 +144,22 @@ button {
     font-size: 28px;
     font-weight: bold;
 }
+#Bcart, #BClear,#Bbuy {
+    width: 234px;
+    background: goldenrod;
+    border: none;
+    color: black;
+}
+#Edit, #Delete, #Add {
+    background: goldenrod;
+    border: none;
+    color: black;
+    width: 100px;
+}
+
+
+
+
+
+
+

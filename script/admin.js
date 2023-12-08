@@ -13,9 +13,9 @@ function displayProduct(){
        <td><img src="${product.image}" style="max-width: 50px; max-height:50px;"
        </td>
        <td>
-       <button onclick="editProduct(${index})">Edit</button>
-       <button onclick="deleteProduct(${JSON.stringify(index)})">Delete</button>
-       <button onclick="addProduct(${index})">Add</button>
+       <button id="Edit" onclick="editProduct(${index})">Edit</button>
+       <button id="Delete" onclick="deleteProduct(${JSON.stringify(index)})">Delete</button>
+       <button id="Add" onclick="addProduct(${index})">Add</button>
        </td>
        `;
        tBody.appendChild(row);
