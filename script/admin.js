@@ -1,95 +1,78 @@
+let products = JSON.parse(localStorage.getItem('products')) || []
+function displayProduct(){
+    let Table = document.getElementById("table");
+    let tBody = Table.querySelector("tBody");
+    tBody.innerHTML = "";
 
-// admin
-document.addEventListener('DOMContentLoaded', function () {
-    const adminProductList = document.getElementById('adminProductList');
+    products.forEach((product, index) =>   {
+        let row = document.createElement("tr");
+       row.innerHTML = `
+       <td>${product.id}</td>
+       <td>${product.name}</td>
+       <td>${product.amount}</td>
+       <td><img src="${product.image}" style="max-width: 50px; max-height:50px;"
+       </td>
+       <td>
+       <button onclick="editProduct(${index})">Edit</button>
+       <button onclick="deleteProduct(${JSON.stringify(index)})">Delete</button>
+       <button onclick="addProduct(${index})">Add</button>
+       </td>
+       `;
+       tBody.appendChild(row);
+    });
+}
+function editProduct(index){
+    let newPId = prompt("Enter id:", products[index].id);
+    let newPName = prompt("Enter name:", products[index].name);
+    let newPAmount = prompt("Enter amount:", products[index].amount);
+    let newPImage = prompt("Enter image:", products[index].image);
     
-    // Initial rendering of products in the admin table
-    renderAdminProducts(products);
-
-    // Function to render products in the admin table
-    function renderAdminProducts(products) {
-        adminProductList.innerHTML = '';
-        products.forEach(product => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td>${product.id}</td>
-                <td>${product.name}</td>
-                <td>${product.amount}</td>
-                <td><img src="${product.image}" alt="${product.name}" style="max-width: 50px;"></td>
-                <td>
-                    <button class="btn btn-warning btn-sm" onclick="editProduct(${product.id})">Edit</button>
-                    <button class="btn btn-danger btn-sm" onclick="deleteProduct(${product.id})">Delete</button>
-                </td>
-            `;
-            adminProductList.appendChild(tr);
-        });
-    }
-
-    // Function to open the Add Product Modal
-    function openAddProductModal() {
-      
-        $('#addProductModal').modal('show');
-    }
-    document.getElementById('addProductButton').addEventListener('click', openAddProductModal);
-
-    // Function to edit a product
-    function editProduct(productId) {
-       
-    const productIndex = products.findIndex(product => product.id === productId);
-
-    if (productIndex !== -1) {
-        const productToEdit = products[productIndex];
-
-        // Display a modal or form with the current values
-        // For simplicity, I'm using a prompt, but you might use a Bootstrap modal
-        const updatedName = prompt("Enter the updated product name", productToEdit.name);
-        const updatedAmount = prompt("Enter the updated product amount", productToEdit.amount);
-        const updatedImage = prompt("Enter the updated product image URL", productToEdit.image);
-
-        // Update the product in the array
-        products[productIndex] = {
-            ...productToEdit,
-            name: updatedName,
-            amount: parseFloat(updatedAmount),
-            image: updatedImage,
+    if (newPId && newPName && newPAmount &&  newPImage  ){
+        products[index] = {
+            id : newPId,
+            name : newPName,  
+            amount : parseFloat(newPAmount),
+            image : newPImage
         };
+        displayProduct()
+        updateProductPage();
 
-        // Save the updated products array to localStorage
-        localStorage.setItem('products', JSON.stringify(products));
-
-        // Re-render the product list
-        renderAdminProducts(products);
-    } else {
-        console.error('Product not found');
     }
+}
+// confirm delete 
+function deleteProduct(index){
+    if (index){
+        products.splice(index, 1)
+        localStorage.setItem('products', JSON.stringify(products))
+        displayProduct()
     }
-    editProduct();
+}
+function openModal(index){
+    let theModal = document.getElementById("Pmodal");
+    let productId = document.getElementById("productId");
+    let productName = document.getElementById("productName");
+    let productAmount = document.getElementById("productAmount");
+    let productImage = document.getElementById("productImage");
+    
+    productId.textContent = "Id: " + products[index].id;
+    productName.textContent = "Name: " + products[index].name;
+    productAmount.textContent = "Amount: " + products[index].amount;
+    productImage.src =  products[index].image;
 
-    // Function to delete a product
-    function deleteProduct(productId) {
-       /// Code to handle product deletion
-        /// You may want to ask for confirmation before deleting
-        // Ask for confirmation
-    const confirmDelete = confirm("Are you sure you want to delete this product?");
+    theModal.style.display ="block";
 
-    if (confirmDelete) {
-        // Find the product in the array based on productId
-        const productIndex = products.findIndex(product => product.id === productId);
+}
+function closeModal() {
+   
+    document.getElementById("myModal").style.display = "none";
+}
+function updateProductPage() {
+    
+    console.log("Product page updated!");
+}
 
-        if (productIndex !== -1) {
-            // Remove the product from the array
-            products.splice(productIndex, 1);
+displayProduct();
+    
 
-            // Save the updated products array to localStorage
-            localStorage.setItem('products', JSON.stringify(products));
 
-            // Re-render the product list
-            renderAdminProducts(products);
-        } else {
-            console.error('Product not found');
-        }
-    }
-    }
-    deleteProduct();
-});
 
